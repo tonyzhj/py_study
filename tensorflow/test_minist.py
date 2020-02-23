@@ -22,7 +22,7 @@ model.fit(x_train, y_train, epochs=10)
 model.save('C:\\Users\\Tony\\Downloads\\python\\tensorflow\\my_model_test.h5')
 '''
 
-model = tf.keras.models.load_model('C:\\Users\\Tony\\Downloads\\python\\tensorflow\\my_model_test.h5')
+model = tf.keras.models.load_model('C:\\Users\\Tony\\Downloads\\python\\py_study\\tensorflow\\my_model_test.h5')
 
 for i in range(1, 10):
     result = model.predict(np.reshape(x_test[i], (1, 28, 28)), batch_size=1)
