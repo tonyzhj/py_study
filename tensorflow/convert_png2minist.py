@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 # Load from and save to
 
-os.chdir('C:/Users/Tony/Downloads/python/py_study/tensorflow/')
+os.chdir('C:/Users/Tony/Downloads/python/py_study/')
 Names = [['./training-images','train'], ['./test-images', 'test']]
 for name in Names:
     
