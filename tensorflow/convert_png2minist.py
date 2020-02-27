@@ -2,6 +2,9 @@ import os
 from PIL import Image
 from array import *
 from random import shuffle
+import numpy as np
+import tensorflow as tf
+import matplotlib.pyplot as plt
 
 # Load from and save to
 
@@ -18,7 +21,7 @@ for name in Names:
         path = os.path.join(name[0],dirname)
         print(path)
         for filename in os.listdir(path):
-            if filename.endswith(".png"):
+            if filename.endswith(".bmp"):
                 FileList.append(os.path.join(name[0],dirname,filename))
 
     shuffle(FileList)
@@ -59,6 +62,17 @@ for name in Names:
     
     header[3] = 3 # Changing MSB for image data (0x00000803)
     
+    model = tf.keras.models.load_model('C:\\Users\\Tony\\Downloads\\python\\py_study\\tensorflow\\my_model_test.h5')
+    print('data_image', np.array(data_image).reshape(1, 28, 28))
+
+    result = model.predict(np.array(data_image).reshape(1, 28, 28) / 255, batch_size=1)
+
+    print('result', result)
+    predict = np.argmax(result,axis=1)  #axis = 1是取行的最大值的索引，0是列的最大值的索引
+    plt.title(predict[0])
+    plt.imshow(np.array(data_image).reshape(28, 28))
+    plt.show()
+
     data_image = header + data_image
 
     output_file = open(name[1]+'-images-idx3-ubyte', 'wb')
