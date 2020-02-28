@@ -3,12 +3,15 @@ from PIL import Image
 from array import *
 from random import shuffle
 import numpy as np
-import tensorflow as tf
+#import tensorflow as tf
+import matplotlib
+matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
 # Load from and save to
 
-os.chdir('C:/Users/Tony/Downloads/python/py_study/')
+#os.chdir('C:/Users/Tony/Downloads/python/py_study/')
+os.chdir('C:/Users/Tony/Desktop/images')
 Names = [['./training-images','train'], ['./test-images', 'test']]
 for name in Names:
     
@@ -61,7 +64,12 @@ for name in Names:
         raise ValueError('Image exceeds maximum size: 256x256 pixels');
     
     header[3] = 3 # Changing MSB for image data (0x00000803)
+
+    print(np.array(data_image).reshape((28, 28)))
+    plt.imshow(np.array(data_image).reshape((28, 28)))
+    plt.show()
     
+   ''' 
     model = tf.keras.models.load_model('C:\\Users\\Tony\\Downloads\\python\\py_study\\tensorflow\\my_model_test.h5')
     print('data_image', np.array(data_image).reshape(1, 28, 28))
 
@@ -72,6 +80,7 @@ for name in Names:
     plt.title(predict[0])
     plt.imshow(np.array(data_image).reshape(28, 28))
     plt.show()
+    '''
 
     data_image = header + data_image
 
