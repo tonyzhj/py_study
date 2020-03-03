@@ -1,10 +1,15 @@
 import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
+import load_img_data as load_data
 
-(x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
-x_train, x_test = x_train/255.0, x_test/255.0
+#(x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
+#x_train, x_test = x_train/255.0, x_test/255.0
 
+x_test = load_data.load_img('C:/Users/Tony/Downloads/python/py_study/images/')
+x_test = x_test / 255.0
+
+print('x_test[0].shape', x_test[0].shape)
 ''' 
 model = tf.keras.models.Sequential([
     tf.keras.layers.Flatten(input_shape=(28, 28)),
@@ -29,6 +34,6 @@ for i in range(1, 10):
     predict = np.argmax(result,axis=1)  #axis = 1是取行的最大值的索引，0是列的最大值的索引
     plt.subplot(3, 3, i)
     plt.title(predict[0])
-    plt.imshow(x_test[i])
+    plt.imshow(x_test[i].reshape(28, 28))
 
 plt.show()
